@@ -72,7 +72,7 @@ class _SummaryState extends State<Summary> {
                 ),
                 SizedBox(height: 20.0,),
                 Container(
-                  width: size.width/1.2,
+                  width: size.width/1.1,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: new BorderRadius.only(
@@ -88,7 +88,7 @@ class _SummaryState extends State<Summary> {
 
 
                         Padding(
-                          padding: const EdgeInsets.all(80.0),
+                          padding: const EdgeInsets.all(50.0),
                           // ignore: deprecated_member_use
                           child: RaisedButton(
                               padding: EdgeInsets.all(20),
@@ -119,13 +119,13 @@ class _SummaryState extends State<Summary> {
                                 trailing: Icon(Icons.check_circle,color: Colors.blueAccent,),
                                 // ignore: deprecated_member_use
                                 subtitle: RaisedButton(
-                                    padding:const EdgeInsets.fromLTRB(0.0,20.0,0.0,20.0) ,
+                                    padding:const EdgeInsets.fromLTRB(0.0,10.0,0.0,10.0) ,
                                     child: Text("FOLLOW",style: TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w700,color: Colors.white,fontSize: 20.0)),
                                     onPressed: (){
                                       print('Button #1 is clicked!');
                                       //Navigator.of(context).pushNamed("your_route_name");
                                     } ,
-                                    color: Colors.pinkAccent,
+                                    color: Colors.black87,
                                     shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0))
                                   ),
                                 ),
