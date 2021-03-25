@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:saga_ebook_technical_round/Episodes.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 import 'Summary.dart';
 
@@ -22,7 +23,7 @@ class _ReviewPageState extends State<ReviewPage> {
             Align(
               alignment: Alignment.topLeft,
               child: IconButton(
-                icon: Icon(Icons.arrow_back_ios),
+                icon: Icon(Icons.arrow_back_ios,size: 30.0,color: Colors.black,),
               ),
             ),
             TopWidget(),
@@ -152,13 +153,10 @@ class _ReviewPageState extends State<ReviewPage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Expanded(
-                  child: Icon(Icons.healing),
-                ),
-                Expanded(
-                  child: Icon(Icons.share),
-                ),
+                Icon(Icons.favorite,color: Colors.white,),
+                Icon(Icons.share_rounded),
               ],
             ),
           )

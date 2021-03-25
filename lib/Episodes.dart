@@ -22,6 +22,9 @@ class _EpisodesState extends State<Episodes> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
+                      onPressed:(){
+                        Navigator.pop(context);
+                      },
                       iconSize: 30.0,
                       icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
                     ),
@@ -31,7 +34,7 @@ class _EpisodesState extends State<Episodes> {
                     alignment: Alignment.topRight,
                     child: IconButton(
                       iconSize: 30.0,
-                      icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
+                      icon: Icon(Icons.sort_by_alpha,color: Colors.black,),
                     ),
                   ),
                   SizedBox(width: 30.0,),

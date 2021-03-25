@@ -12,18 +12,7 @@ class _SummaryState extends State<Summary> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar:PreferredSize(
-        preferredSize: Size.fromHeight(30.0),
-        child: AppBar(
-          backgroundColor: Colors.black45,
-          elevation: 0.0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed:(){
-              Navigator.pop(context);
-            },
-          ),),
-      ) ,
+
       body: Stack(
         children: [
           Container(
@@ -40,6 +29,18 @@ class _SummaryState extends State<Summary> {
           SingleChildScrollView(
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Align(
+                    alignment: Alignment.topLeft ,
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back_ios,size: 30.0,),
+                      onPressed:(){
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                ),
                 SizedBox(height:size.height*.20),
                 Text("Beauty and the Beast!",
                   style: TextStyle(fontSize: 30.0,fontFamily: 'Raleway',fontWeight: FontWeight.w700),),
@@ -92,7 +93,7 @@ class _SummaryState extends State<Summary> {
                           // ignore: deprecated_member_use
                           child: RaisedButton(
                               padding: EdgeInsets.all(20),
-                              child: Text("COMMENT",style: TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w700,color: Colors.white,fontSize: 20.0)),
+                              child: Text("Buy for 62.8 \$ ",style: TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w700,color: Colors.white,fontSize: 20.0)),
                               onPressed: (){
                                 print('Button #1 is clicked!');
                                 //Navigator.of(context).pushNamed("your_route_name");
