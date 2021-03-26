@@ -15,10 +15,12 @@ class _EpisodesState extends State<Episodes> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 28.0,),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Row(
                 children: [
+                  SizedBox(height: 28.0,),
                   Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
@@ -29,7 +31,7 @@ class _EpisodesState extends State<Episodes> {
                       icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
                     ),
                   ),
-                  SizedBox(width: MediaQuery.of(context).size.width/1.46),
+                  SizedBox(width: MediaQuery.of(context).size.width/1.9),
                   Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
@@ -37,7 +39,7 @@ class _EpisodesState extends State<Episodes> {
                       icon: Icon(Icons.sort_by_alpha,color: Colors.black,),
                     ),
                   ),
-                  SizedBox(width: 30.0,),
+                  SizedBox(width: 10,),
                   Align(
                     alignment: Alignment.topRight,
 

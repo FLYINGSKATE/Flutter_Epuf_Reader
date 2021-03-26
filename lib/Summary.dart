@@ -16,19 +16,34 @@ class _SummaryState extends State<Summary> {
       body: Stack(
         children: [
           Container(
-            height: size.height*.50,
+            height: size.height*.60,
             width: size.width,
             decoration: BoxDecoration(
-              color: Colors.black45,
+              color: Colors.grey,
                 borderRadius: new BorderRadius.only(
-                  bottomLeft: const Radius.circular(40.0),
-                  bottomRight: const Radius.circular(40.0),
+                  bottomLeft: const Radius.circular(25.0),
+                  bottomRight: const Radius.circular(25.0),
                 )
             ),
+          ),
+
+          Column(
+            children: [
+              SizedBox(height: size.height*.47,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+
+                  Icon(Icons.favorite,color: Colors.pinkAccent,),
+                  Icon(Icons.share_rounded),
+                ],
+              ),
+            ],
           ),
           SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(height: 28.0,),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Align(
@@ -41,7 +56,7 @@ class _SummaryState extends State<Summary> {
                     ),
                   ),
                 ),
-                SizedBox(height:size.height*.20),
+                SizedBox(height:size.height*.15),
                 Text("Beauty and the Beast!",
                   style: TextStyle(fontSize: 30.0,fontFamily: 'Raleway',fontWeight: FontWeight.w700),),
                 Text("By Walt Disney"),
@@ -71,11 +86,11 @@ class _SummaryState extends State<Summary> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20.0,),
+                SizedBox(height: 60.0,),
                 Container(
                   width: size.width/1.1,
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.grey[200],
                       borderRadius: new BorderRadius.only(
                         topLeft: const Radius.circular(40.0),
                         topRight: const Radius.circular(40.0),

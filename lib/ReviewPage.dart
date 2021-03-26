@@ -1,7 +1,13 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:epub_viewer/epub_viewer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:saga_ebook_technical_round/Episodes.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:saga_ebook_technical_round/readingpage.dart';
 
 import 'Summary.dart';
 
@@ -11,15 +17,17 @@ class ReviewPage extends StatefulWidget {
 }
 
 class _ReviewPageState extends State<ReviewPage> {
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.grey[200],
 
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 28.0,),
             Align(
               alignment: Alignment.topLeft,
               child: IconButton(
@@ -80,22 +88,74 @@ class _ReviewPageState extends State<ReviewPage> {
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(30.0,0.0,10.0,0.0),
-                child: Container(
-                  width:MediaQuery.of(context).size.height / 6 ,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0.0, 1.0), //(x,y)
-                        blurRadius: 6.0,
+                child: GestureDetector(
+                  onTap: ()async {
+                    Directory appDocDir =
+                    await getApplicationDocumentsDirectory();
+                    print('$appDocDir');
+
+                    String iosBookPath = '${appDocDir.path}/chair.epub';
+                    print(iosBookPath);
+                    String androidBookPath = 'file:///android_asset/3.epub';
+                    EpubViewer.setConfig(
+                      themeColor: Theme.of(context).primaryColor,
+                      identifier: "iosBook",
+                      scrollDirection: EpubScrollDirection.ALLDIRECTIONS,
+                      allowSharing: true,
+                      enableTts: true,
+                      nightMode: true,
+                    );
+//                    EpubViewer.open(
+//                      Platform.isAndroid ? androidBookPath : iosBookPath,
+//                      lastLocation: EpubLocator.fromJson({
+//                        "bookId": "2239",
+//                        "href": "/OEBPS/ch06.xhtml",
+//                        "created": 1539934158390,
+//                        "locations": {
+//                          "cfi": "epubcfi(/0!/4/4[simple_book]/2/2/6)"
+//                        }
+//                      }),
+//                    );
+
+                    await EpubViewer.openAsset(
+                      'assets/4.epub',
+                      lastLocation: EpubLocator.fromJson({
+                        "bookId": "2239",
+                        "href": "/OEBPS/ch06.xhtml",
+                        "created": 1539934158390,
+                        "locations": {
+                          "cfi": "epubcfi(/0!/4/4[simple_book]/2/2/6)"
+                        }
+                      }),
+                    );
+                    // get current locator
+                    EpubViewer.locatorStream.listen((locator) {
+                      print(
+                          'LOCATOR: ${EpubLocator.fromJson(jsonDecode(locator))}');
+                    });
+                  },
+                  child: Container(
+                    width:MediaQuery.of(context).size.height / 5 ,
+                    height: MediaQuery.of(context).size.height / 2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage("https://m.media-amazon.com/images/M/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_.jpg"),
                       ),
-                    ],
-                    border: Border.all(
-                      width: 5,
-                      color: Colors.white//                   <--- border width here
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0.0, 1.0), //(x,y)
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                      border: Border.all(
+                        width: 5,
+                        color: Colors.white//                   <--- border width here
+                      ),
                     ),
+
                   ),
-                  child: Image.network('https://m.media-amazon.com/images/M/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_.jpg'),
                 ),
               ),
             ),
@@ -120,7 +180,7 @@ class _ReviewPageState extends State<ReviewPage> {
           Align(
             alignment: Alignment.topLeft,
             child: Text("Beauty and the Beast!",
-                style: TextStyle(fontSize: 35.0,fontFamily: 'Raleway',fontWeight: FontWeight.w700),),
+                style: TextStyle(fontSize: 30.0,fontFamily: 'Raleway',fontWeight: FontWeight.w700),),
           ),
           Text("By Walt Disney"),
           SizedBox(height:MediaQuery.of(context).size.height / 12,),
@@ -155,7 +215,7 @@ class _ReviewPageState extends State<ReviewPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(Icons.favorite,color: Colors.white,),
+                Icon(Icons.favorite,color: Colors.pink,),
                 Icon(Icons.share_rounded),
               ],
             ),
@@ -175,10 +235,10 @@ class _ReviewPageState extends State<ReviewPage> {
           Expanded(
             child: TextButton(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: Text(
                     'Summary',
-                    style: TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w700,fontSize: 20.0),
+                    style: TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w700,fontSize: 18.0),
                   ),
                 ),
                 onPressed: () {
@@ -192,10 +252,10 @@ class _ReviewPageState extends State<ReviewPage> {
           Expanded(
             child: TextButton(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(2.0),
                   child: Text(
                     'Episodes',
-                    style: TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w700,fontSize: 20.0),
+                    style: TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w700,fontSize: 18.0),
                   ),
                 ),
                 onPressed: () {
@@ -208,11 +268,11 @@ class _ReviewPageState extends State<ReviewPage> {
           Container(height: 60, child: VerticalDivider(color: Colors.black12)),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(2.0),
               child: TextButton(
                   child: Text(
                     'Reviews',
-                    style: TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w700,fontSize: 20.0),
+                    style: TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w700,fontSize: 18.0),
                   ),
                   onPressed: () {
                     print('Button #1 is clicked!');
